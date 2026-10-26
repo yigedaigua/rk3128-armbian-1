@@ -21,7 +21,6 @@ jobs:
           cat > userpatches/config-rk3128.conf <<'EOF'
           APT_MIRROR='http://mirrors.tuna.tsinghua.edu.cn/debian/'
           APT_SECURITY_MIRROR='http://mirrors.tuna.tsinghua.edu.cn/debian-security/'
-          PREFER_DOCKER=no
           SKIP_QEMU_SETUP=yes
           SKIP_BOARD_CHECK=yes
           ALLOW_UNSUPPORTED_BOARD=yes
@@ -38,7 +37,7 @@ jobs:
           MODULES="g_serial cdc_acm usbcore usbhid ehci-hcd ohci-hcd r8152 mt7601u mac80211 cfg80211"
           EOF
 
-      - name: 核心编译命令(改用新版 config 调用方式)
+      - name: 核心编译命令(改用新版 config 调用方式，使用 Docker)
         run: cd build && ./compile.sh build rk3128
 
       - name: 上传固件镜像(纯英文合规文件名，100%可下载)
